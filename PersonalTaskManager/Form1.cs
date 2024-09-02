@@ -27,15 +27,39 @@ namespace PersonalTaskManager
 
         private void listView1_ItemActivate(object sender, EventArgs e)
         {
-            //listView1.Items.Remove((Items[0]);
+            listView1.Items.Remove((listView1.SelectedItems[0]));
         }
 
-        private void listView1_MouseDoubleClick(object sender, MouseEventArgs e)
+        private void textBox1_KeyDown(object sender, KeyEventArgs e)
         {
-            ListView listViewTemp = sender as ListView;
-            //listView1.Items.Remove(listViewTemp);            
-            MessageBox.Show(sender.ToString());
+            if (e.KeyCode == Keys.Enter)
+            {
+                btnAdd_Click((object)sender, (EventArgs)e);
+            }
+        }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            while (listView1.CheckedItems.Count != 0)
+            {
+                listView1.CheckedItems[0].Remove();
+            }
+        }
+
+        private void markAllTasksToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < listView1.Items.Count; i++)
+            {
+                listView1.Items[i].Checked = true;
+            }
+        }
+
+        private void unmarkAllTasksToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < listView1.Items.Count; i++)
+            {
+                listView1.Items[i].Checked = false;
+            }
         }
     }
 }
